@@ -1,0 +1,130 @@
+<div class="codepen" data-height="300" data-pen-title="Untitled" data-prefill='{"title":"Untitled","tags":[],"scripts":[],"stylesheets":[]}'>
+  <pre data-lang="html">&lt;link rel="preconnect" href="https://fonts.googleapis.com">
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+&lt;link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
+
+&lt;div class="full-table">
+  &lt;div class="table-cell">
+    
+    &lt;div class="card">
+      &lt;div class="date" id="date">&lt;/div>
+      &lt;div class="clock">
+        &lt;div class="time" id="hour">&lt;/div>
+        &lt;div class="colon">:&lt;/div>
+        &lt;div class="time" id="min">&lt;/div>
+        &lt;div class="colon">:&lt;/div>
+        &lt;div class="time" id="sec">&lt;/div>
+      &lt;/div>
+    &lt;/div>
+    
+  &lt;/div>
+&lt;/div></pre>
+  <pre data-lang="css">/*CSS RESETS*/
+
+body, html {
+    height: 100%;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+
+/*CSS START*/
+
+.full-table {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.card {
+    padding: 10px 40px 10px 40px;
+    border-radius: 10px;
+    color: #a85530;
+    background: #3f4222;
+    display: inline-block;
+    box-shadow: 0.5px 0.5px 10px 10px #978d38;
+}
+
+.card:hover {
+    margin-top: 2px;
+}
+
+.clock {
+    display: inline-block;
+    font-family: "Playfair Display", serif;
+
+    font-weight:900;
+    font-size: 2.7em;
+    padding-left: 27px;
+}
+
+.time {
+    display: inline-block;
+    min-width: 37px;
+}
+
+.colon {
+    font-size: 1.1em;
+    display: inline-block;
+}
+
+.date {
+    display: inline-block;
+    min-width: 162px;
+    padding-right: 30px;
+    border-right: 3px solid #a85530;
+        font-family: "Playfair Display", serif;
+  font-weight:900;
+    font-size: 2.5em;
+}</pre>
+  <pre data-lang="js">function date() {
+    var today = new Date();
+    document.getElementById('date').innerHTML = today.toDateString();
+}
+
+
+function clock() {
+    var today = new Date();
+    var hour = zeros(twelveHour(today.getHours()));
+    var minutes = zeros(today.getMinutes());
+    var seconds = zeros(today.getSeconds());
+    // console.log(today.toLocaleTimeString());
+    document.getElementById('hour').innerHTML = hour;
+    document.getElementById('min').innerHTML = minutes;
+    document.getElementById('sec').innerHTML = seconds;
+}
+
+function twelveHour(hour) {
+    if (hour > 12) {
+        return hour -= 12
+    } else if (hour === 0) {
+        return hour = 12;
+    } else {
+        return hour
+    }
+}
+// adds zero infront of single digit number
+function zeros(num) {
+    if (num &lt; 10) {
+        num = '0' + num
+    };
+    return num;
+}
+
+function dateTime() {
+    date();
+    clock();
+    setTimeout(dateTime, 500);
+}
+
+dateTime()
+// END</pre></div>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>
